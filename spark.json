@@ -1,0 +1,7 @@
+{
+  "name": "ClickEncoder",
+  "author": "karl@pitrich, Robogeek78",
+  "license": "BSD",
+  "version": "0.0.1",
+  "description": "Karls ClickEncoder Ported to sparkCommunity Library"
+}
