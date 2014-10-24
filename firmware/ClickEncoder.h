@@ -35,22 +35,22 @@
 
 // ----------------------------------------------------------------------------
 
+enum ButtonType {
+    BUTTON_OPEN = 0,
+    BUTTON_CLOSED,
+    
+    BUTTON_PRESSED,
+    BUTTON_HELD,
+    BUTTON_RELEASED,
+    
+    BUTTON_CLICKED,
+    BUTTON_DOUBLE_CLICKED
+    
+};
+
+
 class ClickEncoder
 {
-public:
-  typedef enum Button_e {
-    Open = 0,
-    Closed,
-    
-    Pressed,
-    Held,
-    Released,
-    
-    Clicked,
-    DoubleClicked
-    
-  } Button;
-
 public:
   ClickEncoder(uint8_t A, uint8_t B, uint8_t buttonPin = -1, 
                uint8_t stepsPerNotch = 1, bool active = LOW);
@@ -59,12 +59,10 @@ public:
   int16_t getValue(void);
 
 #ifndef WITHOUT_BUTTON
-public:
-  Button getButton(void);
+  ButtonType getButton(void);
 #endif
 
 #ifndef WITHOUT_BUTTON
-public:
   void setDoubleClickEnabled(const bool &d)
   {
     doubleClickEnabled = d;
@@ -76,7 +74,6 @@ public:
   }
 #endif
 
-public:
   void setAccelerationEnabled(const bool &a)
   {
     accelerationEnabled = a;
@@ -91,21 +88,21 @@ public:
   }
 
 private:
-  const uint8_t pinA;
-  const uint8_t pinB;
-  const uint8_t pinBTN;
-  const bool pinsActive;
-  volatile int16_t delta;
-  volatile int16_t last;
-  uint8_t steps;
-  volatile uint16_t acceleration;
+  const uint8_t _pinA;
+  const uint8_t _pinB;
+  const uint8_t _pinBTN;
+  const bool _pinsActive;
+  volatile int16_t __delta;
+  volatile int16_t __last;
+  uint8_t _steps;
+  volatile uint16_t _acceleration;
 #if ENC_DECODER != ENC_NORMAL
-  static const int8_t table[16];
+  static const int8_t _table[16];
 #endif
 #ifndef WITHOUT_BUTTON
-  volatile Button button;
-  bool doubleClickEnabled;
-  bool accelerationEnabled;
+  volatile ButtonType _button;
+  bool _doubleClickEnabled;
+  bool _accelerationEnabled;
 #endif
 };
 
